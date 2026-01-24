@@ -56,51 +56,49 @@ Students have read-only access to their attendance data and limited communicatio
 
 ## 3. Functional Requirements
 
-* The system shall support role-based login for Admin, Faculty, and Student.
-* Attendance shall be recorded on a per-lecture basis.
-* A lecture must be explicitly created and finished by faculty.
-* Attendance once finalized cannot be modified without authorization.
-* A student can be enrolled in multiple courses.
-* A course can have multiple students and multiple lecture records.
-* Attendance percentage shall be calculated automatically.
+* The system shall support role-based access for Admin, Faculty, and Student.
+* Admin shall be able to enroll faculty and students and assign courses and sections.
+* Faculty shall be able to create lectures, mark attendance, and finalize attendance for each lecture.
+* Attendance shall be recorded on a per-student, per-lecture basis.
+* The system shall automatically compute attendance percentage for each student.
+* Students shall be able to view their attendance records for enrolled courses.
+* Faculty and students may raise tickets or broadcast messages (optional).
 
 ---
 
 ## 4. Data Requirements and Assumptions
 
-* Each student is uniquely identified by a student ID or roll number.
-* Each faculty member is uniquely identified by a faculty ID.
-* Courses are uniquely identified by course code.
-* Attendance is recorded per student, per lecture, per course.
-* One student cannot have more than one attendance record for the same lecture.
-* Faculty can mark attendance only for courses assigned to them.
+* Each student, faculty, course, and lecture shall have a unique identifier.
+* A student can enroll in multiple courses, but only once per section.
+* A lecture is associated with exactly one course and one section.
+* A student cannot have more than one attendance record for the same lecture.
+* Attendance, once finalized, cannot be modified without authorization.
 
 ---
 
 ## 5. Identified Database Entities
 
-Based on the information gathered, the following core entities are identified:
+Based on the information gathered, the following entities are identified:
 
 1. Student
 2. Faculty
 3. Admin
 4. Course
 5. Section
-6. Attendance
-7. Lecture (recommended for proper normalization)
+6. Lecture
+7. Attendance
 8. Ticket (optional)
 9. BroadcastMessage (optional)
 
 ---
 
-## 6. Entity Relationship Overview
+## 6. Non-Functional Requirements
 
-* A Student enrolls in one or more Courses.
-* A Course is taught by one or more Faculty members.
-* A Course is associated with one or more Sections.
-* A Faculty conducts multiple Lectures for a Course.
-* Attendance records associate Students with Lectures.
-* Students and Faculty can raise Tickets to Admin.
+* The system shall ensure data consistency and integrity through proper constraints.
+* Only authorized users shall be able to access or modify data.
+* The database design shall follow normalization principles up to Third Normal Form.
+* The system shall support scalability for multiple batches, courses, and sections.
+* The system shall provide fast retrieval of attendance and summary reports.
 
 ---
 
